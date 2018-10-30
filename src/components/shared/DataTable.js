@@ -149,12 +149,16 @@ const RefreshButton = (props) => {
  **/
 
 class DataTable extends React.Component {
-  state = {
-    order: 'asc',
-    orderBy: 'id',
-    page: 0,
-    rowsPerPage: 7,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      order: 'asc',
+      orderBy: 'id',
+      page: 0,
+      rowsPerPage: 7,
+    };
+  }
+
   componentWillReceiveProps(nextProps) {
     const { deleteId, confirmedDelete, newRecord, creating, editing, editedRecord } = nextProps;
     if (confirmedDelete)
@@ -239,18 +243,14 @@ class DataTable extends React.Component {
   handleRequestSort = (event, property) => {
     const orderBy = property;
     let order = 'desc';
-
     if (this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
-
     this.setState({ order, orderBy });
   };
-
   handleChangePage = (event, page) => {
     this.setState({ page });
   };
-
   handleChangeRowsPerPage = event => {
     this.setState({ rowsPerPage: event.target.value });
   };
@@ -372,7 +372,6 @@ class DataTable extends React.Component {
     );
   }
 }
-
 DataTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };

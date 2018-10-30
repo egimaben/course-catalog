@@ -18,6 +18,7 @@ const variantIcon = {
   error: ErrorIcon,
   info: InfoIcon,
 };
+
 const styles = theme => ({
   success: {
     backgroundColor: green[600],
@@ -85,9 +86,8 @@ const styles2 = theme => ({
     margin: theme.spacing.unit,
   },
 });
-class AppSnackBar extends React.Component {
-  render() {
-    const { open, messageVariant, displayMessage, closeSnackBar } = this.props;
+const AppSnackBar =(props)=>{
+    const { open, messageVariant, displayMessage, closeSnackBar } = props;
     return (
       <div>
         <Snackbar
@@ -100,14 +100,14 @@ class AppSnackBar extends React.Component {
           onClose={closeSnackBar}
         >
           <ActionStatusSnackBar
-            onClose={this.handleClose}
+            onClose={closeSnackBar}
             variant={messageVariant}
             message={displayMessage}
           />
         </Snackbar>
       </div>
     );
-  }
+  
 }
 AppSnackBar.propTypes = {
   classes: PropTypes.object.isRequired,
